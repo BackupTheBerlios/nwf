@@ -1,0 +1,26 @@
+build 0.1.2
+=============================================
+- fix see http://bbs.dotnettools.org/activeubb/NewsDetail.asp?id=4314
+- fix see http://www.gotdotnet.com/workspaces/messageboard/thread.aspx?id=6666274d-a3e5-4e7b-b0cb-368dbb2c4bca&threadid=06094b8b-83ea-42a8-85d9-7fa19b9bd0b5
+- fix see http://www.gotdotnet.com/workspaces/messageboard/thread.aspx?id=6666274d-a3e5-4e7b-b0cb-368dbb2c4bca&threadid=0bc37a23-10a6-4d90-8d91-e4076bba5b16
+
+build 0.1.1
+=============================================
+- 移值更新,参见
+http://www.gotdotnet.com/workspaces/messageboard/thread.aspx?id=6666274d-a3e5-4e7b-b0cb-368dbb2c4bca&threadid=e58709d7-5625-49bf-9259-2664bb8de75e
+- lib 更新(dynamicproxy,log4net在不同项目中的引用有不一致的地方)
+	nhibernate 0.9
+	castle ioc beta 3
+	spring.net 2005-8-8
+- 支持 castle ioc,更多信息参见 http://bbs.dotnettools.org/activeubb/newsdetail.asp?id=4261
+
+0.1.0 public preview 2005-6-1
+==============================================
+注意，此为preview发布，已知问题如下 
+
+- Collections.Sort未实现
+- 部分依赖Spring.net Collections中的LinkedList
+- 代码注释未清理
+- 最新nhibernate build导致HibernateWorkflowStore 速度缓慢（待查 ）
+- 其它未尽细节
+

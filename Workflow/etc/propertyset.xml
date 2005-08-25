@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<propertysets>
+	<propertyset name="memory" type="DotNetTools.PropertySet.Memory.MemoryPropertySet,DotNetTools.PropertySet">
+</propertyset>
+<propertyset name="xml" type="DotNetTools.PropertySet.Xml.XMLPropertySet,DotNetTools.PropertySet"/>
+<propertyset name="serializable" type="DotNetTools.PropertySet.Memory.SerializablePropertySet,DotNetTools.PropertySet"/>
+<propertyset name="ado" type="DotNetTools.PropertySet.Database.AdoPropertySet,DotNetTools.PropertySet">
+	 <arg name="connectionString" value="server=(local);user id=sa;pwd=;database=osworkflow"/>
+        <arg name="table.name" value="OS_PROPERTYENTRY"/>
+        <arg name="col.globalKey" value="GLOBAL_KEY"/>
+        <arg name="col.itemKey" value="ITEM_KEY"/>
+        <arg name="col.itemType" value="ITEM_TYPE"/>
+        <arg name="col.string" value="STRING_VALUE"/>
+        <arg name="col.date" value="DATE_VALUE"/>
+        <arg name="col.data" value="DATA_VALUE"/>
+        <arg name="col.float" value="FLOAT_VALUE"/>
+        <arg name="col.number" value="NUMBER_VALUE"/>
+</propertyset>
+<propertyset name="hibernate" type="DotNetTools.PropertySet.Database.AdoPropertySet,DotNetTools.PropertySet">
+	 <arg name="connectionString" value="server=(local);user id=sa;pwd=123456;database=osworkflow"/>
+        <arg name="table.name" value="OS_PROPERTYENTRY"/>
+        <arg name="col.globalKey" value="GLOBAL_KEY"/>
+        <arg name="col.itemKey" value="ITEM_KEY"/>
+        <arg name="col.itemType" value="ITEM_TYPE"/>
+        <arg name="col.string" value="STRING_VALUE"/>
+        <arg name="col.date" value="DATE_VALUE"/>
+        <arg name="col.data" value="DATA_VALUE"/>
+        <arg name="col.float" value="FLOAT_VALUE"/>
+        <arg name="col.number" value="NUMBER_VALUE"/>
+</propertyset>
+</propertysets>
+

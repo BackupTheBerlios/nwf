@@ -1,0 +1,313 @@
+<?xml version="1.0" ?>
+<project name="DotNetTools" default="debug">
+
+  <!-- global project settings -->
+  <property name="project.name" value="DotNetTools" />
+  <property name="project.version" value="0.1.0" unless="${property::exists('project.version')}" />
+  <!-- debug or release -->
+  <property name="project.build.config" value="debug" />
+
+  <!-- make system environment variables available as NAnt properties -->
+  <sysinfo />
+
+  <!-- Target that are always executed -->
+  <call target="set-build-configuration" />
+  <call target="set-runtime-configuration" />
+      
+  <!-- Top level targets -->
+	
+  <!-- TODO - add higher level of configuration so can have both debug and release builds -->
+  <!--        for projects that are part of the current distibution and for all projects  -->
+
+  <target name="debug" description="Perform a 'debug' build">
+    <call target="set-debug-build-configuration" />
+    <call target="build" />
+	
+
+  </target>
+
+  <target name="release" description="Perform a 'release' build">
+    <call target="set-release-build-configuration" />
+    <call target="build" />
+  </target>
+
+	
+
+  <target name="clean" description="Deletes current build configuration">
+    <delete dir="${build.dir}" failonerror="false" />
+  </target>
+
+  <target name="cleanall" description="Deletes every build configuration">
+    <echo message="Deleting all builds from all configurations" />
+    <delete dir="${nant.project.basedir}/build/${nant.settings.currentframework}.${nant.platform.name}"
+            failonerror="false" />
+    <delete dir="${nant.project.basedir}/src/dotnettools.core/bin" failonerror="false"/>
+
+    <delete dir="${nant.project.basedir}/src/dotnettools.core/obj" failonerror="false"/>
+    <delete dir="${nant.project.basedir}/src/dotnettools.propertyset/bin" failonerror="false"/>
+    <delete dir="${nant.project.basedir}/src/dotnettools.propertyset/obj" failonerror="false"/>
+    <delete dir="${nant.project.basedir}/src/dotnettools.workflow/obj" failonerror="false"/>
+    <delete dir="${nant.project.basedir}/src/dotnettools.workflow/bin" failonerror="false"/>
+    <delete dir="${nant.project.basedir}/src/dotnettools.workflow.test/bin" failonerror="false"/>
+    <delete dir="${nant.project.basedir}/src/dotnettools.workflow.test/obj" failonerror="false"/>
+    <delete dir="${nant.project.basedir}/src/_ReSharper.DotNetTools" failonerror="false"/>
+    <delete file="${nant.project.basedir}/src/DotNetTools.resharperoptions" failonerror="false"/>
+
+  </target>
+
+
+  <!-- Supporting targets -->
+
+  <target name="build" description="Builds current configuration">
+                   
+              
+
+
+    <echo message="Build Directory is ${build.dir}" />
+    <!-- prepare build directory -->
+    <mkdir dir="${build.dir}/bin" />
+
+              
+
+    <!-- copy framework-neutral libraries -->
+    <copy todir="${build.dir}/bin">
+      <fileset basedir="lib">
+        <include name="*.dll" />
+        <include name="*.xml" />
+      </fileset>
+    </copy>
+    <!-- copy framework-specific libraries -->
+    <copy todir="${build.dir}/bin">
+      <fileset basedir="${lib.dir}">
+        <include name="*.dll" />
+        <include name="*.xml" />
+        <exclude name="System*" />
+      </fileset>
+    </copy>
+
+    <!--
+    <available type="Framework" resource="net-1.1" property="temp.framework.available" />
+          <if propertytrue="temp.framework.available">
+      <call target="set-net-1.1-runtime-configuration" />
+                  <call target="compile-${current.runtime.config}-${current.runtime.version}" />
+                </if>
+                <ifnot propertytrue="temp.framework.available">
+                  <if propertyexists="project.build.package" propertytrue="project.build.package">
+                   <fail message="The .NET Framework 1.1 is not available." />
+                  </if>
+                  <ifnot propertyexists="project.build.package" propertytrue="project.build.package">
+                    <echo message="The .NET Framework 1.1 is not available. Build skipped." />
+                  </ifnot>
+                </ifnot>
+    -->
+    <!-- build DotNetTools.Core assembly -->
+    <nant buildfile="src/DotNetTools.Core/DotNetTools.Core.build" target="build" />
+    <!-- build DotNetTools.PropertySet assembly -->
+    <nant buildfile="src/DotNetTools.PropertySet/DotNetTools.PropertySet.build" target="build" />
+    <!-- build DotNetTools.Workflow assembly -->
+    <nant buildfile="src/DotNetTools.Workflow/DotNetTools.Workflow.build" target="build" />
+    <nant buildfile="src/DotNetTools.Workflow.Test/DotNetTools.Test.build" target="build" />
+
+  </target>
+
+  <target name="runtests">
+    <!-- test DotNetTools.Test assembly -->
+    <nant buildfile="src/DotNetTools.Workflow.Test/DotNetTools.Test.build" target="test" />
+            
+
+  </target>
+  <!-- Santity Checks -->
+  <target name="check-build-debug">
+    <if test="${not property::exists('build.debug')}">
+      <fail message="The build debug setting has not been specified." />
+    </if>
+  </target>
+
+  <target name="check-build-defines">
+    <if test="${not property::exists('build.defines')}">
+      <fail message="The build defines for the csc task have not been specified." />
+    </if>
+  </target>
+        
+
+
+  <target name="check-current-build-config">
+    <if test="${not property::exists('current.build.config')}">
+      <if test="${not property::exists('project.build.config')}">
+        <fail message="The build configuration has not been specified and no default build configuration is available." />
+      </if>
+      <if test="${property::exists('project.build.config')}">
+        <property name="current.build.config" value="${project.build.config}" />
+      </if>
+    </if>
+  </target>
+	 
+  <!-- Targets for setting up the environment -->
+  <target name="set-build-configuration" depends="check-current-build-config">
+
+    <property name="doc.dir" value="${nant.project.basedir}/doc" />
+    <property name="NDoc.home" value="C:\Program Files\NDoc 1.3\bin\net\1.1" />
+
+    <!--
+  if Visual Studio Help Integration Kit has been installed
+  then change this to true or include -D:vshik.installed=true in the command line.
+  It generates Visual Studio.NET 2003 documentation.
+    -->
+    <property name="vshik.installed" value="false" overwrite="false" />
+
+    <!-- 1591 - do not report warnings for missing XML comments -->
+    <!-- 0618 - do not report deprecation warnings -->
+    <!-- 0067 - do not report uncalled events -->
+    <property name="nowarn.numbers" value="0618" />
+    <!-- use a different set of warnings for building the tests -->
+    <property name="nowarn.numbers.test" value="1591,0618,0067" />
+
+    <if test="${not target::exists('set-' + current.build.config + '-build-configuration')}">
+      <fail message="The ${current.build.config} build configuration is not supported by DotNetTools." />
+    </if>
+    <call target="set-${current.build.config}-build-configuration" />
+  </target>
+      
+
+  <target name="set-debug-build-configuration">
+    <property name="build.debug" value="true" />
+    <property name="build.defines" value="DEBUG,TRACE" />
+    <property name="current.build.config" value="debug" />
+    <property name="samples.dir" value="${nant.project.basedir}/samples"/>
+    <property name="etc.dir" value="${nant.project.basedir}/etc"/>
+
+    <property name="build.dir" value="${nant.project.basedir}/build/${nant.settings.currentframework}.${nant.platform.name}/${project.name}-${project.version}-${current.build.config}" />
+    <property name="solution.file" value="DotNetTools.sln" />
+    <fileset id="src.to.copy">
+      <include name="src/**" />
+      <include name="examples/**" />
+      <include name="test/**" />
+      <!--exclude VS.Net stuff -->
+      <exclude name="**/sdk-web/**" />
+      <exclude name="**/*.suo" />
+      <exclude name="**/*.user" />
+      <exclude name="**/bin/**" />
+      <exclude name="**/obj/**" />
+      <exclude name="**/_ReSharper*/**" />
+    </fileset>
+
+    <call target="set-build-configuration-flags" />
+  </target>
+
+  <target name="set-release-build-configuration">
+    <property name="build.debug" value="false" />
+    <property name="build.defines" value="TRACE,STRONG" />
+    <property name="current.build.config" value="release" />
+
+
+    <property name="build.dir" value="${nant.project.basedir}/build/${nant.settings.currentframework}.${nant.platform.name}/${project.name}-${project.version}-${current.build.config}" />
+    <property name="solution.file" value="DotNetTools.Release.sln" />
+    <fileset id="src.to.copy">
+      <!--exclude VS.Net stuff -->
+      <exclude name="**/sdk-web/**" />
+      <exclude name="**/*.suo" />
+      <exclude name="**/*.user" />
+      <exclude name="**/bin/**" />
+      <exclude name="**/obj/**" />
+      <exclude name="**/_ReSharper*/**" />
+    </fileset>
+
+    <call target="set-build-configuration-flags" />
+  </target>
+	
+	
+
+  <target name="set-build-configuration-flags" depends="check-current-build-config">
+    <property name="current.build.config.debug" value="false" />
+    <property name="current.build.config.release" value="false" />
+    <property name="current.build.config.${current.build.config}" value="true" />
+  </target>
+
+
+  <!-- Framework support targets -->
+  <target name="set-runtime-configuration-flags">
+    <property name="current.runtime.config.net" value="false" />
+    <property name="current.runtime.config.netcf" value="false" />
+    <property name="current.runtime.config.mono" value="false" />
+    <property name="current.runtime.config.sscli" value="false" />
+    <property name="current.runtime.config.${current.runtime.config}" value="true" />
+    <property name="current.runtime.net-1.0" value="false" />
+    <property name="current.runtime.net-1.1" value="false" />
+    <property name="current.runtime.netcf-1.0" value="false" />
+    <property name="current.runtime.mono-1.0" value="false" />
+    <property name="current.runtime.sscli-1.0" value="false" />
+    <property name="current.runtime.${current.runtime.config}-${current.runtime.version}" value="true" />
+  </target>
+  <target name="set-runtime-configuration">
+    <if test="${not property::exists('current.runtime.config')}">
+      <if test="${not property::exists('nant.settings.currentframework')}">
+        <fail message="No runtime configuration was specified and the default NAnt runtime is not available." />
+      </if>
+      <fail message="No runtime configuration was specified and the current runtime (${nant.settings.currentframework}) is not supported by NAnt." unless="${target::exists('set-' + nant.settings.currentframework + '-runtime-configuration')}" />
+      <call target="set-${nant.settings.currentframework}-runtime-configuration" />
+    </if>
+    <if test="${not property::exists('current.runtime.version')}">
+      <if test="${not property::exists('nant.settings.currentframework')}">
+        <fail message="No runtime configuration was specified and the default NAnt runtime is not available." />
+      </if>
+      <fail message="No runtime configuration was specified and the current runtime (${nant.settings.currentframework}) is not supported by NDoc." unless="${target::exists('set-' + nant.settings.currentframework + '-runtime-configuration')}" />
+      <call target="set-${nant.settings.currentframework}-runtime-configuration" />
+    </if>
+    <fail message="The ${current.runtime.config}-${current.runtime.version} runtime is not supported by NDoc." unless="${target::exists('set-' + current.runtime.config + '-' + current.runtime.version + '-runtime-configuration')}" />
+    <call target="set-${current.runtime.config}-${current.runtime.version}-runtime-configuration" />
+  </target>
+  <target name="set-net-1.0-runtime-configuration">
+    <property name="current.runtime.config" value="net" />
+    <property name="current.runtime.version" value="1.0" />
+    <property name="current.runtime.description" value="Microsoft .NET Framework 1.0" />
+    <property name="current.build.defines" value="${build.defines},NET,NET_1_0" />
+    <property name="link.sdkdoc.version" value="SDK_v1_0" />
+    <property name="lib.dir" value="lib/${current.runtime.config}/${current.runtime.version}" />
+    <property name="nant.settings.currentframework" value="${current.runtime.config}-${current.runtime.version}" />
+    <call target="set-runtime-configuration-flags" />
+  </target>
+  <target name="set-net-1.1-runtime-configuration" depends="check-current-build-config, check-build-debug, check-build-defines">
+    <property name="current.runtime.config" value="net" />
+    <property name="current.runtime.version" value="1.1" />
+    <property name="current.runtime.description" value="Microsoft .NET Framework 1.1" />
+    <property name="current.build.debug" value="${build.debug}" dynamic="true" />
+    <property name="current.build.defines" value="${build.defines},NET,NET_1_1" dynamic="true" />
+    <property name="link.sdkdoc.version" value="SDK_v1_1" />
+    <property name="lib.dir" value="lib/${current.runtime.config}/${current.runtime.version}" />
+    <property name="nant.settings.currentframework" value="${current.runtime.config}-${current.runtime.version}" />
+    <call target="set-runtime-configuration-flags" />
+  </target>
+
+  <target name="set-netcf-1.0-runtime-configuration">
+    <property name="current.runtime.config" value="netcf" />
+    <property name="current.runtime.version" value="1.0" />
+    <property name="current.runtime.description" value="Microsoft .NET Compact Framework 1.0" />
+    <property name="current.build.defines" value="${build.defines}NETCF,NETCF_1_0" />
+    <property name="link.sdkdoc.version" value="SDK_v1_1" />
+    <property name="lib.dir" value="lib/${current.runtime.config}/${current.runtime.version}" />
+    <property name="nant.settings.currentframework" value="${current.runtime.config}-${current.runtime.version}" />
+    <call target="set-runtime-configuration-flags" />
+  </target>
+  <target name="set-mono-1.0-runtime-configuration">
+    <property name="current.runtime.config" value="mono" />
+    <property name="current.runtime.version" value="1.0" />
+    <property name="current.runtime.description" value="Mono 1.0" />
+    <property name="current.build.defines" value="${build.defines},MONO,MONO_1_0" />
+    <property name="link.sdkdoc.version" value="MsdnOnline" />
+    <property name="lib.dir" value="lib/${current.runtime.config}/${current.runtime.version}" />
+    <property name="nant.settings.currentframework" value="${current.runtime.config}-${current.runtime.version}" />
+    <call target="set-runtime-configuration-flags" />
+  </target>
+  <target name="set-sscli-1.0-runtime-configuration">
+    <property name="current.runtime.config" value="sscli" />
+    <property name="current.runtime.version" value="1.0" />
+    <property name="current.runtime.description" value="Microsoft Shared Source CLI 1.0" />
+    <property name="current.build.defines" value="${build.defines},SSCLI,SSCLI_1_0" />
+    <property name="link.sdkdoc.version" value="MsdnOnline" />
+    <property name="lib.dir" value="lib/${current.runtime.config}/${current.runtime.version}" />
+    <property name="nant.settings.currentframework" value="${current.runtime.config}-${current.runtime.version}" />
+    <call target="set-runtime-configuration-flags" />
+  </target>
+    
+
+</project>
