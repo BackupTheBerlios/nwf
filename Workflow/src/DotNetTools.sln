@@ -1,0 +1,51 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTools.Core", "DotNetTools.Core\DotNetTools.Core.csproj", "{00ABD9AE-D683-4E3D-AB00-39C9A987B3F7}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTools.PropertySet", "DotNetTools.PropertySet\DotNetTools.PropertySet.csproj", "{AF6A675D-47A5-4CE7-B1F6-F25B30B284E0}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTools.Workflow", "DotNetTools.Workflow\DotNetTools.Workflow.csproj", "{A90D70ED-8CEE-4DC9-A2E2-F42BCA63D417}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTools.Test", "DotNetTools.Workflow.Test\DotNetTools.Test.csproj", "{D431D4DA-9920-49B9-A68B-A377E4CE4ABE}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{00ABD9AE-D683-4E3D-AB00-39C9A987B3F7}.Debug.ActiveCfg = Debug|.NET
+		{00ABD9AE-D683-4E3D-AB00-39C9A987B3F7}.Debug.Build.0 = Debug|.NET
+		{00ABD9AE-D683-4E3D-AB00-39C9A987B3F7}.Release.ActiveCfg = Release|.NET
+		{00ABD9AE-D683-4E3D-AB00-39C9A987B3F7}.Release.Build.0 = Release|.NET
+		{AF6A675D-47A5-4CE7-B1F6-F25B30B284E0}.Debug.ActiveCfg = Debug|.NET
+		{AF6A675D-47A5-4CE7-B1F6-F25B30B284E0}.Debug.Build.0 = Debug|.NET
+		{AF6A675D-47A5-4CE7-B1F6-F25B30B284E0}.Release.ActiveCfg = Release|.NET
+		{AF6A675D-47A5-4CE7-B1F6-F25B30B284E0}.Release.Build.0 = Release|.NET
+		{A90D70ED-8CEE-4DC9-A2E2-F42BCA63D417}.Debug.ActiveCfg = Debug|.NET
+		{A90D70ED-8CEE-4DC9-A2E2-F42BCA63D417}.Debug.Build.0 = Debug|.NET
+		{A90D70ED-8CEE-4DC9-A2E2-F42BCA63D417}.Release.ActiveCfg = Release|.NET
+		{A90D70ED-8CEE-4DC9-A2E2-F42BCA63D417}.Release.Build.0 = Release|.NET
+		{D431D4DA-9920-49B9-A68B-A377E4CE4ABE}.Debug.ActiveCfg = Debug|.NET
+		{D431D4DA-9920-49B9-A68B-A377E4CE4ABE}.Debug.Build.0 = Debug|.NET
+		{D431D4DA-9920-49B9-A68B-A377E4CE4ABE}.Release.ActiveCfg = Release|.NET
+		{D431D4DA-9920-49B9-A68B-A377E4CE4ABE}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(SolutionItems) = postSolution
+		..\DotNetTools.build = ..\DotNetTools.build
+		..\LICENSE-2.0.txt = ..\LICENSE-2.0.txt
+		..\Readme.txt = ..\Readme.txt
+		..\ReleaseNotes.txt = ..\ReleaseNotes.txt
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,85 @@
+<Configuration>
+  <RecentFilesTracker>
+    <RecentFilesTracker>
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\DotNetTools.Util\XMLUtil.cs" offset="319" line="10" column="0" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\propertyset.NET\Config\PropertySetConfig.cs" offset="2277" line="119" column="0" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\propertyset.NET\IPropertySet.cs" offset="8059" line="218" column="0" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\propertyset.NET\PropertySetManager.cs" offset="1226" line="8" column="0" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\propertyset.NET\PropertySetCloner.cs" offset="3315" line="68" column="0" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\propertyset.NET\AbstractPropertySet.cs" offset="4694" line="43" column="0" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\propertyset.NET\Database\AdoPropertySet.cs" offset="12479" line="459" column="0" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\propertyset.NET\Verifiers\PropertyVerifier.cs" offset="0" line="-1" column="-1" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\propertyset.NET\Verifiers\NumberVerifier.cs" offset="0" line="76" column="0" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\propertyset.NET\Verifiers\VerifyException.cs" offset="0" line="105" column="0" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\propertyset.NET\Verifiers\StringVerifier.cs" offset="0" line="0" column="0" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\propertyset.NET\PropertyException.cs" offset="0" line="6" column="0" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\propertyset.NET\PropertyImplementationException.cs" offset="0" line="-1" column="-1" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\propertyset.NET\Data.cs" offset="0" line="8" column="0" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\propertyset.NET\DuplicatePropertyKeyException.cs" offset="0" line="-1" column="-1" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\propertyset.NET\IllegalPropertyException.cs" offset="0" line="0" column="0" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\propertyset.NET\InvalidPropertyTypeException.cs" offset="0" line="-1" column="-1" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\propertyset.NET\Memory\MemoryPropertySet.cs" offset="0" line="171" column="0" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\propertyset.NET\PropertySchema.cs" offset="0" line="81" column="0" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\propertyset.NET\PropertySetSchema.cs" offset="0" line="0" column="0" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\propertyset.NET\SupportClass.cs" offset="349" line="-1" column="-1" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\DotNetTools.Util\Collections.cs" offset="577" line="12" column="0" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\propertyset.NET\AssemblyInfo.cs" offset="0" line="-1" column="-1" />
+      <TrackedFile location="C:\Documents and Settings\jjx\My Documents\Visual Studio Projects\osworkflow.net\src\DotNetTools.Util\Data.cs" offset="26" line="-1" column="-1" />
+    </RecentFilesTracker>
+  </RecentFilesTracker>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean />
+  </SettingsComponent>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Qualified:com.opensymphony.module.propertyset.PropertySet">
+      <Item value="Keys" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:log4net.ILog">
+      <Item value="Error" priority="1" />
+      <Item value="Fatal" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.IDataReader">
+      <Item value="GetOrdinal" priority="0" />
+      <Item value="GetBytes" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Exception">
+      <Item value="Message" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Spring.Collections.Set">
+      <Item value="Contains" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@log4net.LogManager">
+      <Item value="GetLogger" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.IDataParameterCollection">
+      <Item value="Add" priority="17" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Type">
+      <Item value="GetType" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Xml.XmlDocument">
+      <Item value="SelectSingleNode" priority="0" />
+      <Item value="Load" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.SqlClient.SqlCommand">
+      <Item value="CommandText" priority="1" />
+      <Item value="Connection" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Xml.XmlNode">
+      <Item value="SelectNodes" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.IDictionary">
+      <Item value="Keys" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.IDbCommand">
+      <Item value="Parameters" priority="18" />
+      <Item value="CreateParameter" priority="0" />
+      <Item value="Dispose" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.SqlClient.SqlConnection">
+      <Item value="Open" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+</Configuration>
